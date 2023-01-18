@@ -1,0 +1,40 @@
+/* まず、style.cssにこのルールを書き入れてください。 */
+body {
+    font-size: 100%;
+  }
+  
+  /* ここにルールを足していきましょう。*/   
+
+.bk-color {
+    font-size: 600%;
+    background-color: yellow;
+}
+    
+
+.little {
+    font-size: 50%;
+}
+
+.awesome{
+    font-weight: 600;
+}
+
+.great {
+    font-weight: 600;
+    background-color: yellow;
+}
+
+#a {
+    color: blue;
+}
+
+#d {
+    color: red;
+}
+
+
+#e {
+    color: green;
+}
+
+

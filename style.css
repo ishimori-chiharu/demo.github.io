@@ -7,7 +7,8 @@ body {
 
 .bk-color {
     font-size: 600%;
-    background-color: yellow;
+    background-color: black;
+    color:white;
 }
     
 
@@ -28,7 +29,7 @@ body {
     color: blue;
 }
 
-#d {
+.collect_answer {
     color: red;
 }
 
@@ -36,5 +37,4 @@ body {
 #e {
     color: green;
 }
-
 

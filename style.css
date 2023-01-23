@@ -1,40 +1,74 @@
 /* まず、style.cssにこのルールを書き入れてください。 */
 body {
     font-size: 100%;
-  }
+    display : grid;
+    place-content : center;
+    place-items: center; 
+    font-family: 'HG丸ｺﾞｼｯｸM-PRO'; 
+    margin: auto;
+}
   
-  /* ここにルールを足していきましょう。*/   
-
-.bk-color {
+.flashbox {
+    width: 500px;
+    height: 300px;
     font-size: 600%;
     background-color: black;
     color:white;
-}
-    
-
-.little {
-    font-size: 50%;
+    display : grid;
+    place-content : center;
 }
 
-.awesome{
-    font-weight: 600;
+
+
+.maindiv {
+    display : grid;
+    place-content : center;
+    place-items: center;
 }
 
-.great {
-    font-weight: 600;
-    background-color: yellow;
-}
-
-#a {
-    color: blue;
-}
 
 .collect_answer {
     color: red;
+    font-family: 'HG丸ｺﾞｼｯｸM-PRO'; 
+    display : grid;
+    place-content : center;
+    place-items: center;    
 }
 
-
-#e {
-    color: green;
+.basic-msg {
+    display : grid;
+    place-content : center;
+    place-items: center;  
+    font-size: 50px;
+    font-family: 'HG丸ｺﾞｼｯｸM-PRO', cursive; 
 }
 
+.large-btn{
+    width: 150px;
+    height: 60px;
+    font-size: 30px;
+}
+
+.small-btn  {
+    width: 100px;
+    height: 25px;
+    font-size: 15px;
+}
+
+.answerbox{
+    padding: 0.5em;
+    width: 8em;
+    font-size: 30px;
+    height: 25px;
+}
+
+.ans-space {
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 10px;
+    width: 500px;
+
+    place-content : center;
+    place-items: center;
+}

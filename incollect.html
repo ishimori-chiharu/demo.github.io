@@ -7,20 +7,23 @@
   <meta name="theme-color" content="#000000">
   <title>フラシュ暗算</title>
   <script type="text/javascript" src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
-  <img src="incollect.png">
-  <h1 id = "collect_answer" class = "collect_answer">000</h1>
-  <h1>   </h1>
-  <script>
-    //console.log(location.search);
-    let var1 = location.search;
-    let var2 = var1.split('=');
-    dispAnswer(var2[1]);
-  </script>
-  <div>
-    <button type="button" onclick="back()">戻る</button>
+  <div class = "maindiv">
+    <img src="incollect.png">
+    <h1 id = "collect_answer" class = "collect_answer">000</h1>
+    <h1>   </h1>
+    <script>
+      //console.log(location.search);
+      let var1 = location.search;
+      let var2 = var1.split('=');
+      dispAnswer(var2[1]);
+    </script>
+    <div>
+      <button type="button" onclick="back()">戻る</button>
+    </div>  
   </div>
 </body>
 </html>

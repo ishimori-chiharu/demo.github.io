@@ -35,12 +35,19 @@ body {
     place-items: center;    
 }
 
-.basic-msg {
+.large-msg {
     display : grid;
     place-content : center;
     place-items: center;  
     font-size: 50px;
     font-family: 'HG丸ｺﾞｼｯｸM-PRO', cursive; 
+}
+
+.basic-msg {
+    font-family: 'HG丸ｺﾞｼｯｸM-PRO'; 
+    display : grid;
+    place-content : center;
+    place-items: center;    
 }
 
 .large-btn{
@@ -55,13 +62,6 @@ body {
     font-size: 15px;
 }
 
-.answerbox{
-    padding: 0.5em;
-    width: 8em;
-    font-size: 30px;
-    height: 25px;
-}
-
 .ans-space {
     white-space: nowrap;
     display: flex;
@@ -72,3 +72,24 @@ body {
     place-content : center;
     place-items: center;
 }
+
+.setting-space {
+    display: flex;
+    padding: 10px;
+    width: 500px;
+
+}
+
+.settingbox{
+    width: 3em;
+}
+
+
+/* 未使用 */
+.answerbox{
+    padding: 0.5em;
+    width: 8em;
+    font-size: 30px;
+    height: 25px;
+}
+

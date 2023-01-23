@@ -16,13 +16,24 @@
     <h1 id = "collect_answer" class = "collect_answer">000</h1>
     <h1>   </h1>
     <script>
-      //console.log(location.search);
+      console.log(location.search);
       let var1 = location.search;
-      let var2 = var1.split('=');
-      dispAnswer(var2[1]);
+
+      let var2 = var1.split('&');
+      let var3 = var2[0].split('=');
+
+      let interval = var2[1].split('=')[1];
+      let digit = var2[2].split('=')[1];
+
+      dispAnswer(var3[1]);
+
+      //let var2 = var1.split('=');
+      //dispAnswer(var2[1]);
+
+
     </script>
     <div>
-      <button type="button" onclick="back()">戻る</button>
+      <button type="button" onclick="back(interval, digit)">戻る</button>
     </div>  
   </div>
 </body>

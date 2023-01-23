@@ -11,14 +11,15 @@
 </head>
 
 <body>
-  <h1>フラッシュ暗算</h1>
-  <div>
-    <p id = "main" class = "bk-color">　　</p>
-    <button type="button" onclick="start()">START</button>
-  </div>
-  <div>
-    <label>答え：<input type="number" id = "answer" size="40"></label>
-    <button type="button" onclick="check()">CHECK</button>
+  <div class = "maindiv">
+    <h1 class = "basic-msg">フラッシュ暗算</h1>
+    <p id = "main" class = "flashbox">　　</p>
+    <button type="button" class = "large-btn maindiv" onclick="start()">START</button>  
+    <br>
+    <div class = "ans-space">
+      <label>答え：<input type="number" id = "answer"  class = "Answerbox" >　</label>
+      <button type="button" class = "small-btn maindiv" onclick="check()">CHECK</button>  
+    </div>  
   </div>
 </body>
 </html>

@@ -14,8 +14,16 @@
   <div class = "maindiv">
     <img src="collect.png">
     <p id = "main"></p>
+    <script>
+      console.log(location.search);
+      let var1 = location.search;
+      let var2 = var1.split('&');
+
+      let interval = var2[0].split('=')[1];
+      let digit = var2[1].split('=')[1];
+    </script>
     <div>
-      <button type="button" onclick="back()">戻る</button>
+      <button type="button" onclick="back(interval, digit)">戻る</button>
     </div>  
   </div>
 </body>

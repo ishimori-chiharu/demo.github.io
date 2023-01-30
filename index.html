@@ -12,40 +12,10 @@
 
 <body>
   <div class = "maindiv">
-    <h1 class = "large-msg">フラッシュ暗算</h1>
-    <p id = "main" class = "flashbox">　　</p>
-    <button type="button" class = "large-btn maindiv" onclick="start()">START</button>  
+    <button type="button" class = "menu-btn maindiv" onclick="nextPage(1,2,1)">フラッシュ暗算</button>  
     <br>
-    <div class = "ans-space">
-      <label>答え：<input type="number" id = "answer" >　</label>
-      <button type="button" class = "small-btn maindiv" onclick="check()">CHECK</button>  
-    </div>  
+    <button type="button" class = "menu-btn maindiv" onclick="nextPage(1,1,2)">かけ算</button>  
     <br>
-    <br>
-    <div>
-      <p class = "basic-msg">------------------------ 設定 ------------------------</p>
-      <div class = "ans-space">
-        <label>表示間隔：<input type="number" id = "interval" value="1" class = "settingbox" > sec ，　</label>
-        <br>
-        <label>桁数：<input type="number" id = "digit"  value="2" class = "settingbox" ></label>
-      </div>
-      <script>
-        //console.log(location.search);
-        let var1 = location.search;
-        let var2 = var1.split('&');
-        //console.log("var2[0] = ", var2[0]);
-        //console.log("var2[1] = ", var2[1]);
-        if(var2[1] !== undefined) {      //最後尾で確認
-          let interval = var2[0].split('=')[1];
-          let digit = var2[1].split('=')[1];
-          //console.log("interval =", interval);
-          //console.log("digit =", digit);
-          //if(typeof interval === "number"){
-            resetSetting(interval, digit);
-          //}
-        }
-      </script>  
-    </div>
   </div>
 </body>
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <title>フラッシュ暗算</title>
+  <script type="text/javascript" src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<div class = "maindiv">
+    <h1  id = "title" class = "large-msg">フラッシュ暗算</h1>
+    <p id = "main" class = "flashbox">　　</p>
+    <button type="button" class = "large-btn maindiv" onclick="start()">START</button>  
+    <br>
+    <div class = "ans-space">
+      <label>答え：<input type="number" id = "answer" >　</label>
+      <button type="button" class = "small-btn maindiv" onclick="check()">CHECK</button>  
+    </div>  
+    <br>
+    <br>
+    <div>
+      <p class = "basic-msg">------------------------ 設定 ------------------------</p>
+      <div class = "ans-space">
+        <label>表示間隔：<input type="number" id = "interval" value="1" class = "settingbox" > sec ，　</label>
+        <br>
+        <label>桁数：<input type="number" id = "digit"  value="2" class = "settingbox" ></label>
+      </div>
+      <script>
+        //console.log(location.search);
+        let var1 = location.search;
+        let var2 = var1.split('&');
+        //console.log("var2[0] = ", var2[0]);
+        //console.log("var2[1] = ", var2[1]);
+        if(var2[2] !== undefined) {      //最後尾で確認
+          let interval = var2[0].split('=')[1];
+          let digit = var2[1].split('=')[1];
+          let index = var2[2].split('=')[1];
+          console.log("interval =", interval);
+          console.log("digit =", digit);
+          console.log("index =", index);
+          //if(typeof interval === "number"){
+            resetSetting(interval, digit, index);
+          //}
+        }
+      </script>  
+    </div>
+  </div>
+</body>
+</html>

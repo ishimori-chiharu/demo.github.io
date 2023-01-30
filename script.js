@@ -3,14 +3,21 @@
 let total = 0; //正答
 //let digit = 2; //桁数
 //let interval = 1; //表示間隔 
+let globalIndex = 1; //1:フラシュ暗算、2:かけ算
 
 // [START]ボタンクリック
 function start(){
-    let maxNo = 5; //足合せ数
     //console.log("call start");
-
-    total = makeQuestion(maxNo);
     //console.log("total at start func:", total);
+    if(globalIndex == 1){
+        //フラッシュ暗算
+        let maxNo = 5; //足合せ数
+        total = makeQuestion(maxNo);
+    }else{
+        //かけ算
+        let maxNo = 2; //かけ合わせ数
+        total = makeQuestion(maxNo);
+    }
 }
 
 // [Answer Check]ボタンクリック
@@ -30,10 +37,10 @@ function check(){
     if(ansVal.value == total){
         //collect.htmlへ飛ぶ
         //window.location.href = 'collect.html';
-        window.location.href = 'collect.html?name=' + interval + '&name2=' + digit;
+        window.location.href = 'collect.html?name=' + interval + '&name2=' + digit + '&name3=' + globalIndex;
     }else{
         //uncollect.htmlへ飛ぶ
-        window.location.href='incollect.html?name=' + total + '&name2=' + interval + '&name3=' + digit;
+        window.location.href='incollect.html?name=' + total + '&name2=' + interval + '&name3=' + digit + '&name4=' + globalIndex;
         //window.location.href='incollect.html?name=' + total;
     }
 }
@@ -52,17 +59,35 @@ function makeQuestion(maxNo){
 
     //console.log("call question");
 
-    let lastNum = 0;
-    for(let i = 0; i < maxNo; i++){
-        val = Math.floor(Math.random()*(10**digit));
-        while(val === lastNum || val === 0){
+    if(globalIndex == 1){
+        //フラッシュ暗算
+        let lastNum = 0;
+        for(let i = 0; i < maxNo; i++){
             val = Math.floor(Math.random()*(10**digit));
+            while(val === lastNum || val === 0){
+                val = Math.floor(Math.random()*(10**digit));
+            }
+            lastNum = val;
+            //足し合わせ
+            retNum += val;
+            quesNums.push(val);
+        }    
+    } else {
+        //かけ算
+        let val1 = Math.floor(Math.random()*(10**digit));
+        while(val1 === 0){
+            val1 = Math.floor(Math.random()*(10**digit));
         }
-        lastNum = val;
-        //足し合わせ
-        retNum += val;
-        quesNums.push(val);
+        //かける側は1桁固定
+        let val2 = Math.floor(Math.random()*(10**1));
+        while(val2 === 0){
+            val2 = Math.floor(Math.random()*(10**1));
+        }
+        //かけ合わせ
+        retNum = val1 * val2;
+        quesNums.push(`${val1} x ${val2}`);
     }
+
     console.log("問題:", quesNums);
     console.log("答え:", retNum);
 
@@ -112,12 +137,13 @@ function dispNums(num, msec){
     //window.location.reload();
 }
 
-function back(interval, digit){
+function back(interval, digit, index){
     //window.location.href = 'index.html';
     //console.log("Go back to main page.")
     //console.log("interval =",interval);
     //console.log("digit =",digit);
-    window.location.href = 'index.html?name=' + interval + '&name2=' +  digit;
+    //window.location.href = 'main.html?name=' + interval + '&name2=' +  digit;
+    window.location.href = 'main.html?name=' + interval + '&name2=' +  digit + '&name3=' +  index;
 }
 
 function dispAnswer(collectNum){
@@ -130,10 +156,23 @@ function dispAnswer(collectNum){
 }
 
 
-function resetSetting(interval, digit){
+function resetSetting(interval, digit, index){
     //console.log("call reset settings. interval = ", interval);
     document.getElementById('interval').value =  interval;
     //console.log("call reset settings. digit = ", digit);
     document.getElementById('digit').value =  digit;
+
+    console.log("call reset settings. index = ", index);
+    //console.log("index type = ", typeof index);
+    globalIndex = index;
+    if(index == 1){
+        document.getElementById('title').innerHTML =  "フラッシュ暗算";
+    }else{
+        document.getElementById('title').innerHTML =  "かけ算";
+    }
+}
+
+function nextPage(interval, digit, index){
+    window.location.href = 'main.html?name=' + interval + '&name2=' +  digit + '&name3=' +  index;
 }
 

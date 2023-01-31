@@ -5,47 +5,47 @@ let total = 0; //正答
 //let interval = 1; //表示間隔 
 let globalIndex = 1; //1:フラシュ暗算、2:かけ算
 
-// [START]ボタンクリック
-function start(){
-    //console.log("call start");
-    //console.log("total at start func:", total);
-    if(globalIndex == 1){
-        //フラッシュ暗算
-        let maxNo = 5; //足合せ数
-        total = makeQuestion(maxNo);
-    }else{
-        //かけ算
-        let maxNo = 2; //かけ合わせ数
-        total = makeQuestion(maxNo);
+const sleep = function(waitMSec, callbackFunc, argNum){
+    let spendSec = 0; //経過時間[msec]
+
+    // 1sec間隔で無名関数を実行
+    const id = setInterval(() =>{
+        spendSec++;
+
+        //経過時間>=待機時間の場合、待機終了
+        //console.log("spend time = ", spendSec);
+        //if(spendSec >= waitMSec){
+            //タイマー停止
+            clearInterval(id);
+            //完了後、callbackFunc実行
+            if(callbackFunc){
+                callbackFunc(argNum, waitMSec);
+            }
+        //}
+
+    }, 1);
+}
+
+const syncDelay = function(msec){
+    let start = new Date().getTime();
+    let end = 0;
+    while( (end-start) < msec){
+        end = new Date().getTime();
     }
 }
 
-// [Answer Check]ボタンクリック
-function check(){
-    let ansVal = document.getElementById('answer');
-    //console.log("answer:", ansVal);
-
-    const interval = document.getElementById('interval').value;
-    //console.log("interval:", interval);
-
-    const digit = document.getElementById('digit').value;
-    //console.log("digit:", digit);
-
-
-    //ページを変更
-    // //window.location.href = 'パス名'; // 通常の遷移 window.open('パス名', '_blank'); // 新しいタブを開き、ページを表示
-    if(ansVal.value == total){
-        //collect.htmlへ飛ぶ
-        //window.location.href = 'collect.html';
-        window.location.href = 'collect.html?name=' + interval + '&name2=' + digit + '&name3=' + globalIndex;
-    }else{
-        //uncollect.htmlへ飛ぶ
-        window.location.href='incollect.html?name=' + total + '&name2=' + interval + '&name3=' + digit + '&name4=' + globalIndex;
-        //window.location.href='incollect.html?name=' + total;
-    }
+//数字の表示
+const dispNums = function(num, msec){
+    //console.log("flash num:", num);
+    const mainView = document.getElementById('main');   //表示位置のドキュメント
+    mainView.textContent = num;
+    syncDelay(msec);
+    //window.location.reload();
 }
+   
 
-function makeQuestion(maxNo){
+
+const makeQuestion = function(maxNo){
     let retNum = 0;      //和
     const quesNums = []; //問題の数字配列
     let val;             //表示する各数字
@@ -99,45 +99,49 @@ function makeQuestion(maxNo){
     return retNum;
 }
 
-function sleep(waitMSec, callbackFunc, argNum){
-    let spendSec = 0; //経過時間[msec]
 
-    // 1sec間隔で無名関数を実行
-    const id = setInterval(() =>{
-        spendSec++;
-
-        //経過時間>=待機時間の場合、待機終了
-        //console.log("spend time = ", spendSec);
-        //if(spendSec >= waitMSec){
-            //タイマー停止
-            clearInterval(id);
-            //完了後、callbackFunc実行
-            if(callbackFunc){
-                callbackFunc(argNum, waitMSec);
-            }
-        //}
-
-    }, 1);
+// [START]ボタンクリック
+const start = function(){
+    //console.log("call start");
+    //console.log("total at start func:", total);
+    if(globalIndex == 1){
+        //フラッシュ暗算
+        let maxNo = 5; //足合せ数
+        total = makeQuestion(maxNo);
+    }else{
+        //かけ算
+        let maxNo = 2; //かけ合わせ数
+        total = makeQuestion(maxNo);
+    }
 }
 
-function syncDelay(msec){
- let start = new Date().getTime();
- let end = 0;
- while( (end-start) < msec){
-     end = new Date().getTime();
- }
+// [Answer Check]ボタンクリック
+const check = function(){
+    let ansVal = document.getElementById('answer');
+    //console.log("answer:", ansVal);
+
+    const interval = document.getElementById('interval').value;
+    //console.log("interval:", interval);
+
+    const digit = document.getElementById('digit').value;
+    //console.log("digit:", digit);
+
+
+    //ページを変更
+    // //window.location.href = 'パス名'; // 通常の遷移 window.open('パス名', '_blank'); // 新しいタブを開き、ページを表示
+    if(ansVal.value == total){
+        //collect.htmlへ飛ぶ
+        //window.location.href = 'collect.html';
+        window.location.href = 'collect.html?name=' + interval + '&name2=' + digit + '&name3=' + globalIndex;
+    }else{
+        //uncollect.htmlへ飛ぶ
+        window.location.href='incollect.html?name=' + total + '&name2=' + interval + '&name3=' + digit + '&name4=' + globalIndex;
+        //window.location.href='incollect.html?name=' + total;
+    }
 }
 
-//数字の表示
-function dispNums(num, msec){
-    //console.log("flash num:", num);
-    const mainView = document.getElementById('main');   //表示位置のドキュメント
-    mainView.textContent = num;
-    syncDelay(msec);
-    //window.location.reload();
-}
 
-function back(interval, digit, index){
+const back = function(interval, digit, index){
     //window.location.href = 'index.html';
     //console.log("Go back to main page.")
     //console.log("interval =",interval);
@@ -146,7 +150,7 @@ function back(interval, digit, index){
     window.location.href = 'main.html?name=' + interval + '&name2=' +  digit + '&name3=' +  index;
 }
 
-function dispAnswer(collectNum){
+const dispAnswer = function(collectNum){
     //console.log("call disp answer! total = ", collectNum);
     let dispStr = `正しい答えは「${collectNum}」です`;
     //document.getElementById("collect_answer").innerHTML = dispStr;
@@ -156,7 +160,7 @@ function dispAnswer(collectNum){
 }
 
 
-function resetSetting(interval, digit, index){
+const resetSetting = function(interval, digit, index){
     //console.log("call reset settings. interval = ", interval);
     document.getElementById('interval').value =  interval;
     //console.log("call reset settings. digit = ", digit);
@@ -172,7 +176,7 @@ function resetSetting(interval, digit, index){
     }
 }
 
-function nextPage(interval, digit, index){
+const nextPage = function(interval, digit, index){
     window.location.href = 'main.html?name=' + interval + '&name2=' +  digit + '&name3=' +  index;
 }
 

@@ -1,12 +1,12 @@
 'use strict'
 // 1行目に記載している 'use strict' は削除しないでください
-var total = 0; //正答
-//var digit = 2; //桁数
-//var interval = 1; //表示間隔 
-var globalIndex = 1; //1:フラシュ暗算、2:かけ算
+let total = 0; //正答
+//let digit = 2; //桁数
+//let interval = 1; //表示間隔 
+let globalIndex = 1; //1:フラシュ暗算、2:かけ算
 
 const sleep = function(waitMSec, callbackFunc, argNum){
-    var spendSec = 0; //経過時間[msec]
+    let spendSec = 0; //経過時間[msec]
 
     // 1sec間隔で無名関数を実行
     const id = setInterval(() =>{
@@ -27,8 +27,8 @@ const sleep = function(waitMSec, callbackFunc, argNum){
 }
 
 const syncDelay = function(msec){
-    var start = new Date().getTime();
-    var end = 0;
+    let start = new Date().getTime();
+    let end = 0;
     while( (end-start) < msec){
         end = new Date().getTime();
     }
@@ -46,9 +46,9 @@ const dispNums = function(num, msec){
 
 
 const makeQuestion = function(maxNo){
-    var retNum = 0;      //和
+    let retNum = 0;      //和
     const quesNums = []; //問題の数字配列
-    var val;             //表示する各数字
+    let val;             //表示する各数字
     //const waitMSec = 800;  //表示間隔
 
     const waitMSec = document.getElementById('interval').value * 1000;
@@ -61,8 +61,8 @@ const makeQuestion = function(maxNo){
 
     if(globalIndex == 1){
         //フラッシュ暗算
-        var lastNum = 0;
-        for(var i = 0; i < maxNo; i++){
+        let lastNum = 0;
+        for(let i = 0; i < maxNo; i++){
             val = Math.floor(Math.random()*(10**digit));
             while(val === lastNum || val === 0){
                 val = Math.floor(Math.random()*(10**digit));
@@ -74,12 +74,12 @@ const makeQuestion = function(maxNo){
         }    
     } else {
         //かけ算
-        var val1 = Math.floor(Math.random()*(10**digit));
+        let val1 = Math.floor(Math.random()*(10**digit));
         while(val1 === 0){
             val1 = Math.floor(Math.random()*(10**digit));
         }
         //かける側は1桁固定
-        var val2 = Math.floor(Math.random()*(10**1));
+        let val2 = Math.floor(Math.random()*(10**1));
         while(val2 === 0){
             val2 = Math.floor(Math.random()*(10**1));
         }
@@ -92,7 +92,7 @@ const makeQuestion = function(maxNo){
     console.log("答え:", retNum);
 
     //画面に表示
-    for(var i = 0; i < quesNums.length; i++){
+    for(let i = 0; i < quesNums.length; i++){
         sleep(waitMSec, dispNums, quesNums[i]);
     }
     sleep(waitMSec, dispNums, "　　");
@@ -106,18 +106,18 @@ const start = function(){
     //console.log("total at start func:", total);
     if(globalIndex == 1){
         //フラッシュ暗算
-        var maxNo = 5; //足合せ数
+        let maxNo = 5; //足合せ数
         total = makeQuestion(maxNo);
     }else{
         //かけ算
-        var maxNo = 2; //かけ合わせ数
+        let maxNo = 2; //かけ合わせ数
         total = makeQuestion(maxNo);
     }
 }
 
 // [Answer Check]ボタンクリック
 const check = function(){
-    var ansVal = document.getElementById('answer');
+    let ansVal = document.getElementById('answer');
     //console.log("answer:", ansVal);
 
     const interval = document.getElementById('interval').value;
@@ -152,7 +152,7 @@ const back = function(interval, digit, index){
 
 const dispAnswer = function(collectNum){
     //console.log("call disp answer! total = ", collectNum);
-    var dispStr = `正しい答えは「${collectNum}」です`;
+    let dispStr = `正しい答えは「${collectNum}」です`;
     //document.getElementById("collect_answer").innerHTML = dispStr;
     //document.getElementById("collect_answer").textContent = dispStr;
     //const id = document.getElementsByTagName("h1")[0].innerText = dispStr;
@@ -179,4 +179,3 @@ const resetSetting = function(interval, digit, index){
 const nextPage = function(interval, digit, index){
     window.location.href = 'main.html?name=' + interval + '&name2=' +  digit + '&name3=' +  index;
 }
-

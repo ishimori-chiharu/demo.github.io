@@ -29,18 +29,21 @@ const sleep = function(waitMSec, callbackFunc, argNum){
 const syncDelay = function(msec){
     let start = new Date().getTime();
     let end = 0;
+    console.log("display start time:", start);
     while( (end-start) < msec){
         end = new Date().getTime();
     }
+    console.log("display end time  :", end);
 }
 
 //数字の表示
 const dispNums = function(num, msec){
-    //console.log("flash num:", num);
+    console.log("flash num:", num);
     const mainView = document.getElementById('main');   //表示位置のドキュメント
     mainView.textContent = num;
     syncDelay(msec);
     //window.location.reload();
+    console.log("display finished.");
 }
    
 
@@ -94,8 +97,10 @@ const makeQuestion = function(maxNo){
     //画面に表示
     for(let i = 0; i < quesNums.length; i++){
         sleep(waitMSec, dispNums, quesNums[i]);
+        console.log("call function_duspNums: ", i);
     }
     sleep(waitMSec, dispNums, "　　");
+    console.log("End main function.");
     return retNum;
 }
 
@@ -179,3 +184,4 @@ const resetSetting = function(interval, digit, index){
 const nextPage = function(interval, digit, index){
     window.location.href = 'main.html?name=' + interval + '&name2=' +  digit + '&name3=' +  index;
 }
+

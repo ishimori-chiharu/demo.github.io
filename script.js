@@ -64,22 +64,22 @@ const makeQuestion = function(maxNo){
 
     if(globalIndex == 1){
         //フラッシュ暗算
-        // let lastNum = 0;
-        // for(let i = 0; i < maxNo; i++){
-        //     val = Math.floor(Math.random()*(10**digit));
-        //     while(val === lastNum || val === 0){
-        //         val = Math.floor(Math.random()*(10**digit));
-        //     }
-        //     lastNum = val;
-        //     //足し合わせ
-        //     retNum += val;
-        //     quesNums.push(val);
-        // }    
-        quesNums.push("a");
-        quesNums.push("b");
-        quesNums.push("c");
-        quesNums.push("d");
-        quesNums.push("e");
+        let lastNum = 0;
+        for(let i = 0; i < maxNo; i++){
+            val = Math.floor(Math.random()*(10**digit));
+            while(val === lastNum || val === 0){
+                val = Math.floor(Math.random()*(10**digit));
+            }
+            lastNum = val;
+            //足し合わせ
+            retNum += val;
+            quesNums.push(val);
+        }    
+        // quesNums.push("a");
+        // quesNums.push("b");
+        // quesNums.push("c");
+        // quesNums.push("d");
+        // quesNums.push("e");
     } else {
         //かけ算
         let val1 = Math.floor(Math.random()*(10**digit));
@@ -104,8 +104,8 @@ const makeQuestion = function(maxNo){
         sleep(waitMSec, dispNums, quesNums[i]);
         console.log("call function_duspNums: ", i);
     }
-    sleep(waitMSec, dispNums, "end");
-    // sleep(waitMSec, dispNums, "　　");
+    //sleep(waitMSec, dispNums, "end");
+    sleep(waitMSec, dispNums, "　　");
     console.log("End main function.");
     return retNum;
 }
